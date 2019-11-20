@@ -242,15 +242,19 @@ STATD_PORT=20050
 nfsd 端口 2049 udp/tcp
 mountd	20048
 ```
+```shell
 rpcinfo -p localhost
+```
 #系统 RPC服务在 nfs服务启动时默认会为 mountd动态选取一个随机端口（32768--65535）来进行通讯，我们可以通过编辑/etc/services 文件为 mountd指定一个固定端口：
-# vi /etc/services
+```shell
+vi /etc/services
 #查看是否有mountd没有的话，在末尾添加 
 mountd          20048/tcp               # NFS mount protocol
 mountd          20048/udp               # NFS mount protocol
+```
 
 #客户端在挂载的时候遇到的一个问题如下，可能是网络不太稳定，NFS默认是用UDP协议，换成TCP协议即可：
-
+```shell
 mount -t nfs 192.168.1.97:/opt/test /mnt -o proto=tcp -o nolock
 
 fdisk -l
@@ -274,7 +278,7 @@ mkfs -t ext3 /dev/vdb
 #挂载:
 mkdir /data
 mount /dev/vdb /data
-
+```
 
 #设置开机直接挂载
 #编辑/etc/fstab　文件
