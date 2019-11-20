@@ -39,12 +39,12 @@ make -j 4 && make install
 ```shell
 ./nginx -V
 ./nginx: error while loading shared libraries: libluajit-5.1.so.2: cannot open shared object file: No such file or directory
-# 报未加载lua的库
-# 加载lua库，加入到ld.so.conf文件
+#报未加载lua的库
+#加载lua库，加入到ld.so.conf文件
 echo "/usr/local/webservice/luajit2-2.1-20190912/lib" >> /etc/ld.so.conf
-# 然后执行如下命令：
+#然后执行如下命令：
 ldconfig
-# 在执行
+#在执行
 ./nginx -V
 nginx version: nginx/1.16.1
 built by gcc 4.8.5 20150623 (Red Hat 4.8.5-39) (GCC) 
@@ -54,8 +54,8 @@ configure arguments: --prefix=/usr/local/webservice/nginx1.16/ --user=www --grou
 #模块已加载上。
 ```
 ##  使用lua
-# 创建lua脚本文件目录/usr/local/webservice/lua_script
-# 在nginx.conf配置文件中添加
+#创建lua脚本文件目录/usr/local/webservice/lua_script
+#在nginx.conf配置文件中添加
 ```shell	
 lua_package_path "/usr/local/webservice/lua_script/?.lua;;";
 lua_load_resty_core off;
